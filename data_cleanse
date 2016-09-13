@@ -1,0 +1,637 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.SparkSession\n\nval dataFile \u003d \"s3a://qubole-ds-competition/CompetitionData/10-CollegeScorecard/csv/merged_2013_PP.csv\"\n\nval spark \u003d SparkSession\n                .builder()\n                .appName(\"build_views\")\n                .getOrCreate()\n                \nimport spark.implicits._\n\nval dataFromFile \u003d spark.read.option(\"header\",\"true\").csv(dataFile)\n\n//Schools with more than associates degree and admission rate over 0.0\nval sWAB \u003d dataFromFile\n            .filter($\"PREDDEG\" \u003e\u003d 3 \u0026\u0026 $\"HIGHDEG\" \u003e\u003d 3 \u0026\u0026 $\"ADM_RATE\" \u003e 0.0)\n            .toDF()\n            \nsWAB\n    .select($\"opeid\",$\"INSTNM\",$\"main\", $\"HIGHDEG\",$\"CCBASIC\",$\"ADM_RATE\", $\"SAT_AVG\")\n    .limit(10)\n    .show()",
+      "dateUpdated": "Sep 13, 2016 4:46:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473442675921_1054087938",
+      "id": "20160909-173755_867417817",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.sql.SparkSession\npathToCSV: String \u003d s3a://qubole-ds-competition/CompetitionData/10-CollegeScorecard/csv\ncsvFile: String \u003d merged_2013_PP.csv\ndataFile: String \u003d s3a://qubole-ds-competition/CompetitionData/10-CollegeScorecard/csv/merged_2013_PP.csv\nspark: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@71a53b6d\nimport spark.implicits._\ndataFromFile: org.apache.spark.sql.DataFrame \u003d [UNITID: string, OPEID: string ... 1727 more fields]\nsWAB: org.apache.spark.sql.DataFrame \u003d [UNITID: string, OPEID: string ... 1727 more fields]\n+------+--------------------+----+-------+-------+--------+-------+\n| opeid|              INSTNM|main|HIGHDEG|CCBASIC|ADM_RATE|SAT_AVG|\n+------+--------------------+----+-------+-------+--------+-------+\n|100200|Alabama A \u0026 M Uni...|   1|      4|     18|  0.8989|    823|\n|105200|University of Ala...|   1|      4|     15|  0.8673|   1146|\n|105500|University of Ala...|   1|      4|     15|  0.8062|   1180|\n|100500|Alabama State Uni...|   1|      4|     18|  0.5125|    830|\n|105100|The University of...|   1|      4|     16|  0.5655|   1171|\n|831000|Auburn University...|   1|      4|     18|  0.8371|    970|\n|100900|   Auburn University|   1|      4|     16|  0.8274|   1215|\n|101200|Birmingham Southe...|   1|      3|     21|  0.6422|   1177|\n|101900|  Huntingdon College|   1|      3|     22|  0.6279|    999|\n|102000|Jacksonville Stat...|   1|      4|     18|  0.8326|   1036|\n+------+--------------------+----+-------+-------+--------+-------+\n\n"
+      },
+      "dateCreated": "Sep 9, 2016 5:37:55 PM",
+      "dateStarted": "Sep 13, 2016 3:51:05 PM",
+      "dateFinished": "Sep 13, 2016 3:51:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nDownload data dictionary to temp location",
+      "dateUpdated": "Sep 13, 2016 5:00:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473784938069_1744173968",
+      "id": "20160913-164218_922684190",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eDownload data dictionary to temp location\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 13, 2016 4:42:18 PM",
+      "dateStarted": "Sep 13, 2016 4:42:49 PM",
+      "dateFinished": "Sep 13, 2016 4:42:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nwget -O /tmp/data_dictionary.csv http://pancake-data-competition.s3-website-us-east-1.amazonaws.com/data_dictionary.csv",
+      "dateUpdated": "Sep 13, 2016 5:01:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 96.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473442869282_-902300567",
+      "id": "20160909-174109_1751348279",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Sep 9, 2016 5:41:09 PM",
+      "dateStarted": "Sep 13, 2016 4:10:12 PM",
+      "dateFinished": "Sep 13, 2016 4:10:13 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nCopy to hdfs",
+      "dateUpdated": "Sep 13, 2016 5:00:56 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473784985026_-1543627977",
+      "id": "20160913-164305_1647781455",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eCopy to hdfs\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 13, 2016 4:43:05 PM",
+      "dateStarted": "Sep 13, 2016 4:43:32 PM",
+      "dateFinished": "Sep 13, 2016 4:43:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhadoop fs -copyFromLocal /tmp/data_dictionary.csv hdfs://ec2-54-236-253-128.compute-1.amazonaws.com:9000/",
+      "dateUpdated": "Sep 13, 2016 5:01:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473783229715_446609161",
+      "id": "20160913-161349_1992102565",
+      "dateCreated": "Sep 13, 2016 4:13:49 PM",
+      "dateStarted": "Sep 13, 2016 4:43:56 PM",
+      "dateFinished": "Sep 13, 2016 4:43:59 PM",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nCopy from hdfs to S3",
+      "dateUpdated": "Sep 13, 2016 5:01:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473785023960_-908730995",
+      "id": "20160913-164343_148796159",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eCopy from hdfs to S3\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 13, 2016 4:43:43 PM",
+      "dateStarted": "Sep 13, 2016 4:43:57 PM",
+      "dateFinished": "Sep 13, 2016 4:43:57 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhadoop distcp hdfs://ec2-54-236-253-128.compute-1.amazonaws.com:9000/data_dictionary.csv s3a://qubole-ds-competition/5995/tmp/",
+      "dateUpdated": "Sep 13, 2016 5:02:30 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473783485345_-1756895407",
+      "id": "20160913-161805_419662740",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Sep 13, 2016 4:18:05 PM",
+      "dateStarted": "Sep 13, 2016 5:02:00 PM",
+      "dateFinished": "Sep 13, 2016 5:02:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nRename columns",
+      "dateUpdated": "Sep 13, 2016 5:02:07 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473786103511_1183894202",
+      "id": "20160913-170143_1049292680",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eRename columns\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 13, 2016 5:01:43 PM",
+      "dateStarted": "Sep 13, 2016 5:02:00 PM",
+      "dateFinished": "Sep 13, 2016 5:02:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val ddPath \u003d \"s3a://qubole-ds-competition/5995/tmp/data_dictionary.csv\"\nval ddDF \u003d spark.read.option(\"header\", \"true\").csv(localDDPath).toDF()",
+      "dateUpdated": "Sep 13, 2016 5:02:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473781951048_-1719750431",
+      "id": "20160913-155231_157494990",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "ddPath: String \u003d s3a://qubole-ds-competition/5995/tmp/data_dictionary.csv\nddDF: org.apache.spark.sql.DataFrame \u003d [NAME OF DATA ELEMENT: string, dev-category: string ... 7 more fields]\n"
+      },
+      "dateCreated": "Sep 13, 2016 3:52:31 PM",
+      "dateStarted": "Sep 13, 2016 4:21:10 PM",
+      "dateFinished": "Sep 13, 2016 4:21:12 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "ddDF.printSchema()",
+      "dateUpdated": "Sep 13, 2016 5:03:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473783177760_-1715572388",
+      "id": "20160913-161257_552614544",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "root\n |-- NAME OF DATA ELEMENT: string (nullable \u003d true)\n |-- dev-category: string (nullable \u003d true)\n |-- developer-friendly name: string (nullable \u003d true)\n |-- API data type: string (nullable \u003d true)\n |-- VARIABLE NAME: string (nullable \u003d true)\n |-- VALUE: string (nullable \u003d true)\n |-- LABEL: string (nullable \u003d true)\n |-- SOURCE: string (nullable \u003d true)\n |-- NOTES: string (nullable \u003d true)\n\n"
+      },
+      "dateCreated": "Sep 13, 2016 4:12:57 PM",
+      "dateStarted": "Sep 13, 2016 4:22:57 PM",
+      "dateFinished": "Sep 13, 2016 4:22:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val newColumnNames \u003d Seq(\"description\", \"category\", \"dev_friendly_name\", \"api_data_type\", \"api_variable_name\", \"value\", \"label\", \"source\", \"notes\")\nval ddDFRenamed \u003d ddDF.toDF(newColumnNames: _*)\nddDFRenamed.printSchema",
+      "dateUpdated": "Sep 13, 2016 5:03:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473783777502_41065207",
+      "id": "20160913-162257_2002868363",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "newColumnNames: Seq[String] \u003d List(description, category, dev_friendly_name, api_data_type, api_variable_name, value, label, source, notes)\nddDFRenamed: org.apache.spark.sql.DataFrame \u003d [description: string, category: string ... 7 more fields]\nroot\n |-- description: string (nullable \u003d true)\n |-- category: string (nullable \u003d true)\n |-- dev_friendly_name: string (nullable \u003d true)\n |-- api_data_type: string (nullable \u003d true)\n |-- api_variable_name: string (nullable \u003d true)\n |-- value: string (nullable \u003d true)\n |-- label: string (nullable \u003d true)\n |-- source: string (nullable \u003d true)\n |-- notes: string (nullable \u003d true)\n\n"
+      },
+      "dateCreated": "Sep 13, 2016 4:22:57 PM",
+      "dateStarted": "Sep 13, 2016 4:40:09 PM",
+      "dateFinished": "Sep 13, 2016 4:40:11 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nSave as orc in our S3 bucket",
+      "dateUpdated": "Sep 13, 2016 5:03:34 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473786194558_1602193401",
+      "id": "20160913-170314_1173543239",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eSave as orc in our S3 bucket\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 13, 2016 5:03:14 PM",
+      "dateStarted": "Sep 13, 2016 5:03:27 PM",
+      "dateFinished": "Sep 13, 2016 5:03:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "ddDFRenamed.write\n  .format(\"orc\")\n  .save(\"s3a://qubole-ds-competition/5995/tmp/data_dictionary\")",
+      "dateUpdated": "Sep 13, 2016 5:04:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473783863591_-1854132898",
+      "id": "20160913-162423_1586747456",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Sep 13, 2016 4:24:23 PM",
+      "dateStarted": "Sep 13, 2016 4:48:29 PM",
+      "dateFinished": "Sep 13, 2016 4:48:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nAnalyze data dictionary",
+      "dateUpdated": "Sep 13, 2016 5:04:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473786235927_1755585619",
+      "id": "20160913-170355_150892791",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eAnalyze data dictionary\u003c/p\u003e\n"
+      },
+      "dateCreated": "Sep 13, 2016 5:03:55 PM",
+      "dateStarted": "Sep 13, 2016 5:04:13 PM",
+      "dateFinished": "Sep 13, 2016 5:04:13 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.read.orc(\"s3a://qubole-ds-competition/5995/tmp/data_dictionary\").toDF().createOrReplaceTempView(\"data_dictionary\")",
+      "dateUpdated": "Sep 13, 2016 4:52:37 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473783944756_-1594488687",
+      "id": "20160913-162544_431250749",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Sep 13, 2016 4:25:44 PM",
+      "dateStarted": "Sep 13, 2016 4:52:37 PM",
+      "dateFinished": "Sep 13, 2016 4:52:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nSELECT category, COUNT(category) AS cat_count\nFROM data_dictionary \nGROUP BY category\nORDER BY cat_count DESC",
+      "dateUpdated": "Sep 13, 2016 4:57:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "category",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "cat_count",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "category",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473785418328_605587601",
+      "id": "20160913-165018_68415562",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "category\tcat_count\ncompletion\t1023\nacademics\t228\nschool\t165\nrepayment\t130\n\t105\nstudent\t94\nearnings\t73\ncost\t65\naid\t40\nadmissions\t25\nroot\t5\n"
+      },
+      "dateCreated": "Sep 13, 2016 4:50:18 PM",
+      "dateStarted": "Sep 13, 2016 4:57:29 PM",
+      "dateFinished": "Sep 13, 2016 4:57:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "dateUpdated": "Sep 13, 2016 5:00:30 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "category",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "category",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473785488952_-763810355",
+      "id": "20160913-165128_679477865",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "category\nroot\nacademics\nadmissions\nschool\ncost\nstudent\nrepayment\nearnings\n\naid\ncompletion\n"
+      },
+      "dateCreated": "Sep 13, 2016 4:51:28 PM",
+      "dateStarted": "Sep 13, 2016 4:59:25 PM",
+      "dateFinished": "Sep 13, 2016 4:59:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473785913580_265774413",
+      "id": "20160913-165833_839814293",
+      "dateCreated": "Sep 13, 2016 4:58:33 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Matt O - Data cleanse",
+  "id": "RHNFYTSY361473383385",
+  "angularObjects": {
+    "2BVNXSK9C209231472840176786": [],
+    "2BX14G8G4209231472840176764": [],
+    "2BWY657BR209231472840176779": [],
+    "2BWHS9UU9209231472840176671": []
+  },
+  "config": {},
+  "info": {},
+  "source": "FCN"
+}

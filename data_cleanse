@@ -1,48 +1,13 @@
 {
   "paragraphs": [
     {
-      "text": "%md\nDownload data dictionary to temp location",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
+      "text": "%sh\n# Download from my S3 bucket\nwget -O /tmp/total-group-2015.pdf  http://pancake-data-competition.s3-website-us-east-1.amazonaws.com/total-group-2015.pdf\n# Copy from local file system to hdfs\nhadoop fs -copyFromLocal /tmp/total-group-2015.pdf /tmp\n# See what\u0027s in hdfs /tmp dir\nhadoop fs -ls /tmp\n# Copy from hdfs to S3\nhadoop distcp /tmp/total-group-2015.pdf s3a://qubole-ds-competition/5995/tmp/",
+      "dateUpdated": "Sep 16, 2016 9:23:23 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
           "mode": "table",
           "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": false,
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "jobName": "paragraph_1473784938069_1744173968",
-      "id": "20160913-164218_922684190",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003cp\u003eDownload data dictionary to temp location\u003c/p\u003e\n"
-      },
-      "dateCreated": "Sep 13, 2016 4:42:18 PM",
-      "dateStarted": "Sep 13, 2016 4:42:49 PM",
-      "dateFinished": "Sep 13, 2016 4:42:50 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%sh\nwget -O /tmp/data_dictionary.csv http://pancake-data-competition.s3-website-us-east-1.amazonaws.com/data_dictionary.csv",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 96.0,
           "optionOpen": false,
           "keys": [],
           "values": [],
@@ -56,157 +21,22 @@
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1473442869282_-902300567",
-      "id": "20160909-174109_1751348279",
+      "jobName": "paragraph_1474042202674_-429173416",
+      "id": "20160916-161002_1332975086",
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": ""
+        "msg": "Found 7 items\n-rw-r--r--   2 hdfs hdfs          0 2016-09-16 20:49 /tmp/QBOL_TEZ_ALL_DONE\n-rw-r--r--   2 root hdfs     593500 2016-09-16 21:17 /tmp/SAGE2016_UTAH.xlsx\n-rw-r--r--   2 root hdfs       1493 2016-09-16 21:09 /tmp/clean_2013_data.R\n-rw-r--r--   2 root hdfs     104188 2016-09-16 21:19 /tmp/education_BLS.xlsx\n-rw-r--r--   2 hdfs hdfs     640999 2016-09-16 20:49 /tmp/services\n-rw-r--r--   2 root hdfs     160349 2016-09-16 21:21 /tmp/total-group-2015.pdf\n-rw-r--r--   2 root hdfs     644474 2016-09-16 21:20 /tmp/utah-summary-2015_AP.xlsx\n"
       },
-      "dateCreated": "Sep 9, 2016 5:41:09 PM",
-      "dateStarted": "Sep 13, 2016 4:10:12 PM",
-      "dateFinished": "Sep 13, 2016 4:10:13 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%md\nCopy to hdfs",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": false,
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "jobName": "paragraph_1473784985026_-1543627977",
-      "id": "20160913-164305_1647781455",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003cp\u003eCopy to hdfs\u003c/p\u003e\n"
-      },
-      "dateCreated": "Sep 13, 2016 4:43:05 PM",
-      "dateStarted": "Sep 13, 2016 4:43:32 PM",
-      "dateFinished": "Sep 13, 2016 4:43:32 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%sh\nhadoop fs -copyFromLocal /tmp/data_dictionary.csv hdfs://ec2-54-236-253-128.compute-1.amazonaws.com:9000/",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": false,
-        "editorMode": "ace/mode/sh"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "jobName": "paragraph_1473783229715_446609161",
-      "id": "20160913-161349_1992102565",
-      "dateCreated": "Sep 13, 2016 4:13:49 PM",
-      "dateStarted": "Sep 13, 2016 4:43:56 PM",
-      "dateFinished": "Sep 13, 2016 4:43:59 PM",
-      "status": "ERROR",
-      "errorMessage": "",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%md\nCopy from hdfs to S3",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": false,
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "jobName": "paragraph_1473785023960_-908730995",
-      "id": "20160913-164343_148796159",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003cp\u003eCopy from hdfs to S3\u003c/p\u003e\n"
-      },
-      "dateCreated": "Sep 13, 2016 4:43:43 PM",
-      "dateStarted": "Sep 13, 2016 4:43:57 PM",
-      "dateFinished": "Sep 13, 2016 4:43:57 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%sh\nhadoop distcp hdfs://ec2-54-236-253-128.compute-1.amazonaws.com:9000/data_dictionary.csv s3a://qubole-ds-competition/5995/tmp/",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": false,
-        "editorMode": "ace/mode/sh"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "jobName": "paragraph_1473783485345_-1756895407",
-      "id": "20160913-161805_419662740",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": ""
-      },
-      "dateCreated": "Sep 13, 2016 4:18:05 PM",
-      "dateStarted": "Sep 13, 2016 5:02:00 PM",
-      "dateFinished": "Sep 13, 2016 5:02:19 PM",
+      "dateCreated": "Sep 16, 2016 4:10:02 PM",
+      "dateStarted": "Sep 16, 2016 9:21:16 PM",
+      "dateFinished": "Sep 16, 2016 9:21:40 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nRename columns",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:11 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -241,7 +71,7 @@
     },
     {
       "text": "val ddPath \u003d \"s3a://qubole-ds-competition/5995/tmp/data_dictionary.csv\"\nval ddDF \u003d spark.read.option(\"header\", \"true\").csv(localDDPath).toDF()",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:11 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -275,7 +105,7 @@
     },
     {
       "text": "ddDF.printSchema()",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:11 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -309,7 +139,7 @@
     },
     {
       "text": "val newColumnNames \u003d Seq(\"description\", \"category\", \"dev_friendly_name\", \"api_data_type\", \"api_variable_name\", \"value\", \"label\", \"source\", \"notes\")\nval ddDFRenamed \u003d ddDF.toDF(newColumnNames: _*)\nddDFRenamed.printSchema",
-      "dateUpdated": "Sep 13, 2016 11:50:32 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:12 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -343,7 +173,7 @@
     },
     {
       "text": "%md\nSave as orc in our S3 bucket",
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:12 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -378,7 +208,7 @@
     },
     {
       "text": "ddDFRenamed.write\n  .format(\"orc\")\n  .save(\"s3a://qubole-ds-competition/5995/tmp/data_dictionary\")",
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:12 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -412,7 +242,7 @@
     },
     {
       "text": "%md\nAnalyze data dictionary",
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:12 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -447,7 +277,7 @@
     },
     {
       "text": "spark.read.orc(\"s3://qubole-ds-competition/5995/tmp/data_dictionary\").toDF().createOrReplaceTempView(\"data_dictionary\")",
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "dateUpdated": "Sep 15, 2016 9:42:06 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -474,18 +304,18 @@
         "msg": ""
       },
       "dateCreated": "Sep 13, 2016 4:25:44 PM",
-      "dateStarted": "Sep 13, 2016 11:50:33 PM",
-      "dateFinished": "Sep 13, 2016 11:50:35 PM",
+      "dateStarted": "Sep 15, 2016 9:42:07 PM",
+      "dateFinished": "Sep 15, 2016 9:43:25 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nSELECT category, COUNT(category) AS cat_count\nFROM data_dictionary \nGROUP BY category\nORDER BY cat_count DESC",
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "dateUpdated": "Sep 15, 2016 2:46:12 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
-          "mode": "multiBarChart",
+          "mode": "table",
           "height": 300.0,
           "optionOpen": false,
           "keys": [
@@ -526,14 +356,14 @@
         "msg": "category\tcat_count\ncompletion\t1023\nacademics\t228\nschool\t165\nrepayment\t130\n\t105\nstudent\t94\nearnings\t73\ncost\t65\naid\t40\nadmissions\t25\nroot\t5\n"
       },
       "dateCreated": "Sep 13, 2016 4:50:18 PM",
-      "dateStarted": "Sep 13, 2016 11:50:33 PM",
-      "dateFinished": "Sep 13, 2016 11:50:45 PM",
+      "dateStarted": "Sep 15, 2016 2:46:15 PM",
+      "dateFinished": "Sep 15, 2016 2:47:42 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val dataFile \u003d \"s3://qubole-ds-competition/CompetitionData/10-CollegeScorecard/csv/merged_2013_PP.csv\"\nval dataFrame2013 \u003d spark.read.option(\"header\",\"true\").csv(dataFile).toDF()\ndataFrame2013.createOrReplaceTempView(\"2013_data\")",
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "dateUpdated": "Sep 15, 2016 9:43:42 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -572,14 +402,14 @@
         "msg": "dataFile: String \u003d s3://qubole-ds-competition/CompetitionData/10-CollegeScorecard/csv/merged_2013_PP.csv\ndataFrame2013: org.apache.spark.sql.DataFrame \u003d [UNITID: string, OPEID: string ... 1727 more fields]\n"
       },
       "dateCreated": "Sep 13, 2016 4:51:28 PM",
-      "dateStarted": "Sep 13, 2016 11:50:36 PM",
-      "dateFinished": "Sep 13, 2016 11:50:51 PM",
+      "dateStarted": "Sep 15, 2016 9:43:42 PM",
+      "dateFinished": "Sep 15, 2016 9:43:49 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nSELECT d.RELAFFIL, dd.description, COUNT(d.RELAFFIL) as RELAFFIL_count\nFROM 2013_data d\nJOIN data_dictionary dd ON dd.api_variable_name \u003d \u0027RELAFFIL\u0027\nGROUP BY d.RELAFFIL, dd.description\nORDER BY RELAFFIL_count DESC",
-      "dateUpdated": "Sep 13, 2016 11:51:20 PM",
+      "dateUpdated": "Sep 15, 2016 2:51:49 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -609,17 +439,97 @@
       "result": {
         "code": "SUCCESS",
         "type": "TABLE",
-        "msg": "RELAFFIL\tdescription\tRELAFFIL_count\nNULL\tReligous affiliation of the institution\t6887\n30\tReligous affiliation of the institution\t253\n71\tReligous affiliation of the institution\t95\n54\tReligous affiliation of the institution\t72\n66\tReligous affiliation of the institution\t57\n42\tReligous affiliation of the institution\t36\n80\tReligous affiliation of the institution\t36\n39\tReligous affiliation of the institution\t31\n79\tReligous affiliation of the institution\t24\n75\tReligous affiliation of the institution\t23\n48\tReligous affiliation of the institution\t19\n88\tReligous affiliation of the institution\t18\n52\tReligous affiliation of the institution\t18\n61\tReligous affiliation of the institution\t17\n74\tReligous affiliation of the institution\t17\n76\tReligous affiliation of the institution\t14\n27\tReligous affiliation of the institution\t14\n95\tReligous affiliation of the institution\t14\n68\tReligous affiliation of the institution\t12\n99\tReligous affiliation of the institution\t12\n59\tReligous affiliation of the institution\t10\n57\tReligous affiliation of the institution\t9\n73\tReligous affiliation of the institution\t8\n65\tReligous affiliation of the institution\t7\n89\tReligous affiliation of the institution\t6\n58\tReligous affiliation of the institution\t6\n51\tReligous affiliation of the institution\t6\n69\tReligous affiliation of the institution\t6\n78\tReligous affiliation of the institution\t6\n64\tReligous affiliation of the institution\t5\n49\tReligous affiliation of the institution\t5\n34\tReligous affiliation of the institution\t4\n94\tReligous affiliation of the institution\t4\n55\tReligous affiliation of the institution\t4\n81\tReligous affiliation of the institution\t3\n24\tReligous affiliation of the institution\t3\n41\tReligous affiliation of the institution\t3\n28\tReligous affiliation of the institution\t3\n35\tReligous affiliation of the institution\t3\n67\tReligous affiliation of the institution\t3\n43\tReligous affiliation of the institution\t2\n97\tReligous affiliation of the institution\t2\n93\tReligous affiliation of the institution\t2\n84\tReligous affiliation of the institution\t2\n37\tReligous affiliation of the institution\t2\n38\tReligous affiliation of the institution\t2\n60\tReligous affiliation of the institution\t2\n44\tReligous affiliation of the institution\t2\n33\tReligous affiliation of the institution\t2\n103\tReligous affiliation of the institution\t2\n47\tReligous affiliation of the institution\t2\n91\tReligous affiliation of the institution\t1\n36\tReligous affiliation of the institution\t1\n100\tReligous affiliation of the institution\t1\n102\tReligous affiliation of the institution\t1\n92\tReligous affiliation of the institution\t1\n50\tReligous affiliation of the institution\t1\n22\tReligous affiliation of the institution\t1\n45\tReligous affiliation of the institution\t1\n87\tReligous affiliation of the institution\t1\n"
+        "msg": "RELAFFIL\tdescription\tRELAFFIL_count\nNULL\tReligous affiliation of the institution\t6887\n30\tReligous affiliation of the institution\t253\n71\tReligous affiliation of the institution\t95\n54\tReligous affiliation of the institution\t72\n66\tReligous affiliation of the institution\t57\n80\tReligous affiliation of the institution\t36\n42\tReligous affiliation of the institution\t36\n39\tReligous affiliation of the institution\t31\n79\tReligous affiliation of the institution\t24\n75\tReligous affiliation of the institution\t23\n48\tReligous affiliation of the institution\t19\n52\tReligous affiliation of the institution\t18\n88\tReligous affiliation of the institution\t18\n74\tReligous affiliation of the institution\t17\n61\tReligous affiliation of the institution\t17\n76\tReligous affiliation of the institution\t14\n95\tReligous affiliation of the institution\t14\n27\tReligous affiliation of the institution\t14\n68\tReligous affiliation of the institution\t12\n99\tReligous affiliation of the institution\t12\n59\tReligous affiliation of the institution\t10\n57\tReligous affiliation of the institution\t9\n73\tReligous affiliation of the institution\t8\n65\tReligous affiliation of the institution\t7\n89\tReligous affiliation of the institution\t6\n78\tReligous affiliation of the institution\t6\n51\tReligous affiliation of the institution\t6\n69\tReligous affiliation of the institution\t6\n58\tReligous affiliation of the institution\t6\n49\tReligous affiliation of the institution\t5\n64\tReligous affiliation of the institution\t5\n34\tReligous affiliation of the institution\t4\n94\tReligous affiliation of the institution\t4\n55\tReligous affiliation of the institution\t4\n41\tReligous affiliation of the institution\t3\n24\tReligous affiliation of the institution\t3\n81\tReligous affiliation of the institution\t3\n35\tReligous affiliation of the institution\t3\n67\tReligous affiliation of the institution\t3\n28\tReligous affiliation of the institution\t3\n93\tReligous affiliation of the institution\t2\n97\tReligous affiliation of the institution\t2\n103\tReligous affiliation of the institution\t2\n38\tReligous affiliation of the institution\t2\n43\tReligous affiliation of the institution\t2\n37\tReligous affiliation of the institution\t2\n33\tReligous affiliation of the institution\t2\n47\tReligous affiliation of the institution\t2\n60\tReligous affiliation of the institution\t2\n44\tReligous affiliation of the institution\t2\n84\tReligous affiliation of the institution\t2\n91\tReligous affiliation of the institution\t1\n36\tReligous affiliation of the institution\t1\n100\tReligous affiliation of the institution\t1\n102\tReligous affiliation of the institution\t1\n92\tReligous affiliation of the institution\t1\n50\tReligous affiliation of the institution\t1\n22\tReligous affiliation of the institution\t1\n45\tReligous affiliation of the institution\t1\n87\tReligous affiliation of the institution\t1\n"
       },
       "dateCreated": "Sep 13, 2016 5:12:55 PM",
-      "dateStarted": "Sep 13, 2016 11:50:45 PM",
-      "dateFinished": "Sep 13, 2016 11:50:57 PM",
+      "dateStarted": "Sep 15, 2016 2:51:49 PM",
+      "dateFinished": "Sep 15, 2016 2:51:53 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "val columns \u003d dataFrame2013.columns\nfor (column \u003c- columns) {\n    \n}",
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "text": "%sql\nSELECT \u0027RELAFFIL\u0027 AS column_name, first(dd.description) AS description, count(d.RELAFFIL) AS num_not_null\nFROM 2013_data d\nJOIN data_dictionary dd ON dd.api_variable_name \u003d \u0027RELAFFIL\u0027\nWHERE d.RELAFFIL !\u003d \u0027NULL\u0027",
+      "dateUpdated": "Sep 15, 2016 10:01:52 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "column_name",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "column_name",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473957324491_296239120",
+      "id": "20160915-163524_316151869",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "column_name\tdescription\tnum_not_null\nRELAFFIL\tReligous affiliation of the institution\t917\n"
+      },
+      "dateCreated": "Sep 15, 2016 4:35:24 PM",
+      "dateStarted": "Sep 15, 2016 10:01:52 PM",
+      "dateFinished": "Sep 15, 2016 10:01:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val column \u003d \"RELAFFIL\"\nval a \u003d spark.sql(s\"SELECT ${column} FROM 2013_data\")\na.count\nval notNull \u003d a.filter(s\"${column} !\u003d \u0027NULL\u0027\")\nnotNull.count",
+      "dateUpdated": "Sep 15, 2016 9:54:12 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473959950596_-247672708",
+      "id": "20160915-171910_808177296",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "column: String \u003d RELAFFIL\na: org.apache.spark.sql.DataFrame \u003d [RELAFFIL: string]\nres11: Long \u003d 7804\nnotNull: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [RELAFFIL: string]\nres12: Long \u003d 917\n"
+      },
+      "dateCreated": "Sep 15, 2016 5:19:10 PM",
+      "dateStarted": "Sep 15, 2016 9:54:12 PM",
+      "dateFinished": "Sep 15, 2016 9:54:16 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val columns \u003d dataFrame2013.columns\nfor (column \u003c- columns) {\n    val countDF \u003d spark.sql(s\"\"\"\n      SELECT \u0027${column}\u0027 AS column_name, first(dd.description) AS description, COUNT(d.${column}) AS num_not_null\n      FROM 2013_data d\n      JOIN data_dictionary dd ON dd.api_variable_name \u003d \u0027${column}\u0027\n      WHERE d.${column} !\u003d \u0027NULL\u0027\n    \"\"\")\n    //countDF.show()\n    countDF.write.format(\"csv\").mode(\"append\").save(\"/tmp/scorecard_non_null_counts.csv\")\n}",
+      "dateUpdated": "Sep 15, 2016 4:43:55 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -641,18 +551,19 @@
       "jobName": "paragraph_1473786734226_-1353481587",
       "id": "20160913-171214_1553949835",
       "result": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "type": "TEXT",
-        "msg": "columns: Array[String] \u003d Array(UNITID, OPEID, opeid6, INSTNM, CITY, STABBR, ZIP, AccredAgency, INSTURL, NPCURL, sch_deg, HCM2, main, NUMBRANCH, PREDDEG, HIGHDEG, CONTROL, st_fips, region, LOCALE, locale2, LATITUDE, LONGITUDE, CCBASIC, CCUGPROF, CCSIZSET, HBCU, PBI, ANNHI, TRIBAL, AANAPII, HSI, NANTI, MENONLY, WOMENONLY, RELAFFIL, ADM_RATE, ADM_RATE_ALL, SATVR25, SATVR75, SATMT25, SATMT75, SATWR25, SATWR75, SATVRMID, SATMTMID, SATWRMID, ACTCM25, ACTCM75, ACTEN25, ACTEN75, ACTMT25, ACTMT75, ACTWR25, ACTWR75, ACTCMMID, ACTENMID, ACTMTMID, ACTWRMID, SAT_AVG, SAT_AVG_ALL, PCIP01, PCIP03, PCIP04, PCIP05, PCIP09, PCIP10, PCIP11, PCIP12, PCIP13, PCIP14, PCIP15, PCIP16, PCIP19, PCIP22, PCIP23, PCIP24, PCIP25, PCIP26, PCIP27, PCIP29, PCIP30, PCIP31, PCIP38, PCIP39, PCIP40, PCIP41, PCIP42, PCIP43,..."
+        "msg": "columns: Array[String] \u003d Array(UNITID, OPEID, opeid6, INSTNM, CITY, STABBR, ZIP, AccredAgency, INSTURL, NPCURL, sch_deg, HCM2, main, NUMBRANCH, PREDDEG, HIGHDEG, CONTROL, st_fips, region, LOCALE, locale2, LATITUDE, LONGITUDE, CCBASIC, CCUGPROF, CCSIZSET, HBCU, PBI, ANNHI, TRIBAL, AANAPII, HSI, NANTI, MENONLY, WOMENONLY, RELAFFIL, ADM_RATE, ADM_RATE_ALL, SATVR25, SATVR75, SATMT25, SATMT75, SATWR25, SATWR75, SATVRMID, SATMTMID, SATWRMID, ACTCM25, ACTCM75, ACTEN25, ACTEN75, ACTMT25, ACTMT75, ACTWR25, ACTWR75, ACTCMMID, ACTENMID, ACTMTMID, ACTWRMID, SAT_AVG, SAT_AVG_ALL, PCIP01, PCIP03, PCIP04, PCIP05, PCIP09, PCIP10, PCIP11, PCIP12, PCIP13, PCIP14, PCIP15, PCIP16, PCIP19, PCIP22, PCIP23, PCIP24, PCIP25, PCIP26, PCIP27, PCIP29, PCIP30, PCIP31, PCIP38, PCIP39, PCIP40, PCIP41, PCIP42, PCIP43,...org.apache.spark.SparkException: Job aborted.\n  at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand$$anonfun$run$1.apply$mcV$sp(InsertIntoHadoopFsRelationCommand.scala:149)\n  at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand$$anonfun$run$1.apply(InsertIntoHadoopFsRelationCommand.scala:115)\n  at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand$$anonfun$run$1.apply(InsertIntoHadoopFsRelationCommand.scala:115)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:58)\n  at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:115)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:60)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:58)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.doExecute(commands.scala:74)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:115)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:115)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:136)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:133)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:114)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:86)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:86)\n  at org.apache.spark.sql.execution.datasources.DataSource.write(DataSource.scala:487)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:211)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:194)\n  at $anonfun$1.apply(\u003cconsole\u003e:40)\n  at $anonfun$1.apply(\u003cconsole\u003e:32)\n  at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)\n  at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)\n  ... 47 elided\nCaused by: org.apache.spark.SparkException: Job 1689 cancelled part of cancelled job group zeppelin-20160913-171214_1553949835\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1476)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1415)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply$mcVI$sp(DAGScheduler.scala:821)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:821)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:821)\n  at scala.collection.mutable.HashSet.foreach(HashSet.scala:78)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobGroupCancelled(DAGScheduler.scala:821)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1664)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1644)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1633)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:637)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1994)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2007)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2027)\n  at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand$$anonfun$run$1.apply$mcV$sp(InsertIntoHadoopFsRelationCommand.scala:143)\n  ... 69 more\n"
       },
       "dateCreated": "Sep 13, 2016 5:12:14 PM",
-      "dateStarted": "Sep 13, 2016 11:50:52 PM",
-      "dateFinished": "Sep 13, 2016 11:50:59 PM",
-      "status": "FINISHED",
+      "dateStarted": "Sep 15, 2016 4:43:55 PM",
+      "dateFinished": "Sep 15, 2016 5:01:48 PM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
-      "dateUpdated": "Sep 13, 2016 11:50:33 PM",
+      "text": "%sh\nhadoop fs -rm -r /tmp/scorecard_non_null_counts.csv",
+      "dateUpdated": "Sep 15, 2016 5:02:35 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -664,23 +575,36 @@
           "groups": [],
           "scatter": {}
         },
-        "enabled": true
+        "enabled": true,
+        "editorMode": "ace/mode/sh"
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1473789302345_870625922",
-      "id": "20160913-175502_1104428892",
+      "jobName": "paragraph_1473956826884_-239296888",
+      "id": "20160915-162706_2098878276",
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": ""
+        "msg": "Deleted /tmp/scorecard_non_null_counts.csv\n"
       },
-      "dateCreated": "Sep 13, 2016 5:55:02 PM",
-      "dateStarted": "Sep 13, 2016 11:50:57 PM",
-      "dateFinished": "Sep 13, 2016 11:50:59 PM",
+      "dateCreated": "Sep 15, 2016 4:27:06 PM",
+      "dateStarted": "Sep 15, 2016 5:02:35 PM",
+      "dateFinished": "Sep 15, 2016 5:02:38 PM",
       "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1473957877602_225578306",
+      "id": "20160915-164437_2062873072",
+      "dateCreated": "Sep 15, 2016 4:44:37 PM",
+      "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
